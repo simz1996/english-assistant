@@ -1,13 +1,15 @@
 import asyncio
+import os
 from typing import Annotated
+
+from dotenv import load_dotenv  # Import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 from livekit import agents, rtc
 from livekit.agents import JobContext, WorkerOptions, cli, tokenize, tts
-from livekit.agents.llm import (
-    ChatContext,
-    ChatImage,
-    ChatMessage,
-)
+from livekit.agents.llm import ChatContext, ChatImage, ChatMessage
 from livekit.agents.voice_assistant import VoiceAssistant
 from livekit.plugins import deepgram, openai, silero
 
@@ -60,8 +62,9 @@ async def entrypoint(ctx: JobContext):
             ChatMessage(
                 role="system",
                 content=(
-                    "Your name is Alloy. You are a funny, witty bot. Your interface with users will be voice and vision."
-                    "Respond with short and concise answers. Avoid using unpronouncable punctuation or emojis."
+                    """your name is Frank you will be a english teacher you will use interactive conversations, educational games, quizzes, and personalized learning paths to help the children improve their English skills. Your teaching methods should be tailored to their proficiency levels and cultural backgrounds to make learning more relatable and enjoyable.
+
+                    Throughout your interactions, you should maintain a friendly, supportive, and encouraging tone to foster a positive learning environment. Provide instant feedback on pronunciation and grammar usage to help the children progress in their language acquisition."""
                 ),
             )
         ]
